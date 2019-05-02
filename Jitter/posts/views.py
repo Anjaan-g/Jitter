@@ -7,3 +7,7 @@ class IndexView(generic.ListView):
     template_name= 'posts/index.html'
     def get_queryset(self):
         return True
+class LoginView(generic.ListView):
+    template_name = 'posts/login.html'
+    def get_queryset(self):
+        return True
