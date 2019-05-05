@@ -4,14 +4,51 @@
 {% block title %} Login {% endblock title %}
 
 {% block content %}
-  <form  method="post">
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<!-- <form method="post" action="{% static 'posts/login.html' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" value="login" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form> -->
+
+
+<!-- <form method="post">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" name="" value="">
+</form> -->
+
+<form class="form" method="post" action="{% url 'posts:login' %}">
     {% csrf_token %}
-    <div class="page-header header-filter" style="background-image: url({% static 'posts/img/bg7.jpg' %}); background-size: cover; background-position: top center;">
+    <div class="page-header header-filter" style="background-image: url({% static 'posts/img/bg7.jpg' %}); background-position: top center;">
       <div class="container">
         <div class="row">
           <div class="col-lg-4 col-md-6 ml-auto mr-auto">
             <div class="card card-login">
-              <form class="form" method="" action="">
+
                 <div class="card-header card-header-primary text-center">
                   <h4 class="card-title">Login</h4>
                   <div class="social-line">
@@ -54,9 +91,8 @@
                   </div>
                 </div>
                 <div class="footer text-center">
-                  <a href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg">Login</a>
+                  <a href="{% url 'posts:index' %}" class="btn btn-primary btn-link btn-wd btn-lg">Login</a>
                 </div>
-              </form>
             </div>
           </div>
         </div>

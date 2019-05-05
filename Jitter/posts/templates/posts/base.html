@@ -4,8 +4,6 @@
 
 <head>
   <meta charset="utf-8" />
-  <!-- <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png"> -->
-  <!-- <link rel="icon" type="image/png" href="../assets/img/favicon.png"> -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>{% block title %}
     Jitter
@@ -26,7 +24,7 @@
   <nav class="navbar  fixed-top navbar-expand-md bg-primary" color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="#" ><i class="fa fa-home"> </i> Home </a>
+        <a class="navbar-brand" href="{% url 'posts:index' %}" ><i class="fa fa-home"> </i> Home </a>
         <a class="navbar-brand" href="#"><i class="fa fa-bell"> </i> Notifications</a>
         <a class="navbar-brand" href="#"><i class="material-icons"> message</i> Messages</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,20 +34,29 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
-      <div class="collapse navbar-collapse">
+      <div class="collapse navbar-collapse" style="max-height: 15px">
         <ul class="navbar-nav ml-auto">
-          <form class="form-inline ml-auto">
-            <div class="form-group has-white bmd-form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
-              <i class="material-icons">search</i>
-            </button>
-          </form>
-          <li class="nav-item">
-            <a class="nav-link"  title="" data-placement="bottom" href="#" target="_blank" data-original-title="Check your profile">
-              <i class="fa fa-facebook-square"></i> Profile
-            </a>
+            <form class="form-inline ml-auto">
+              <div class="form-group has-white bmd-form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
+                <i class="material-icons">search
+                </i>
+              </button>
+            </form>
+          {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link"href="#profile"> Profile
+                <!-- <img src="{% static 'posts/img/faces/christian.jpg' %}" alt="Thumbnail Image" class="img-raised  rounded-circle img-fluid"> -->
+              </a>
+              <li class="nav-item">
+                <a class="nav-link" href="#feed">Feed</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#signout">Sign out</a>
+              </li>
+          {% endif %}
         </ul>
       </div>
     </div>
