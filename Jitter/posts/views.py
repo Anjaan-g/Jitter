@@ -7,6 +7,7 @@ from django.contrib.auth import (
     logout
 )
 from .forms import UserLoginForm, UserRegisterForm
+from django.views.generic.edit import FormView
 #
 # def login_view(request):
 #     next = request.GET.get('next')
@@ -33,9 +34,10 @@ class IndexView(generic.ListView):
         return True
 
 
-class LoginView(generic.ListView):
+class LoginView(FormView):
     template_name = 'posts/login.html'
-
+    form_class = UserLoginForm
+    success_url = ''
     def login_view(request):
         next = request.GET.get('next')
         form = UserLoginForm(request.POST or None)
@@ -48,10 +50,34 @@ class LoginView(generic.ListView):
                 return redirect(next)
             return redirect('/')
 
+        form.clean()
+        return super().form_valid(form)
+
+
+
+
+class RegisterView(generic.ListView):
+    template_name = 'posts/signup.html'
+    form_class = UserRegisterForm
+    success_url = ''
+    def register_view(request):
+        next = request.GET.get('next')
+        form = UserRegisterForm(request.POST or None)
+        if form.is_valid():
+            user = form.save(commit=False)
+            password = form.cleaned_data('password')
+            user.set_password(password)
+            user.save()
+            new_user = authenticate(username=user.username, password=password)
+            login(request, new_user)
+            if next:
+                return redirect(next)
+            return redirect('/')
+
         context = {
             'form': form,
         }
-        return render(request, 'posts/login.html',context)
+        return render(request, 'posts/signup.html',context)
 
 
     def get_queryset(self):
