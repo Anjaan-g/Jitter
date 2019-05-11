@@ -1,8 +1,18 @@
+{% extends '../posts/base.html' %}
+{% load static %}
+
+{% block title %} Login {% endblock title %}
+
+{% block content %}
 
 <form method="post">
+  <div class="section header-profile">
+
   {% csrf_token %}
 
   {{ form }}
 
   <input type="submit" value="submit">
+  </div>
 </form>
+{% endblock %}

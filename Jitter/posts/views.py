@@ -8,25 +8,7 @@ from django.contrib.auth import (
 )
 from .forms import UserLoginForm, UserRegisterForm
 from django.views.generic.edit import FormView
-#
-# def login_view(request):
-#     next = request.GET.get('next')
-#     form = UserLoginForm(request.POST or None)
-#     if form.is_valid():
-#         username = form.cleaned_data.get('username')
-#         password = form.cleaned_data.get('password')
-#         user = authenticate(username=username, password=password)
-#         login(request, user)
-#         if next:
-#             return redirect(next)
-#         return redirect('/')
-#
-#     context = {
-#         'form': form,
-#     }
-#     return render(request, "login.html",context)
 
-# Create your views here.
 
 class IndexView(generic.ListView):
     template_name = 'posts/index.html'
@@ -48,7 +30,7 @@ class LoginView(FormView):
             login(request, user)
             if next:
                 return redirect(next)
-            return redirect('/')
+            return redirect('')
 
         form.clean()
         return super().form_valid(form)
@@ -56,12 +38,12 @@ class LoginView(FormView):
 
 
 
-class RegisterView(generic.ListView):
+class RegisterView(FormView):
     template_name = 'posts/signup.html'
     form_class = UserRegisterForm
-    success_url = ''
+    success_url = 'posts/index.html'
     def register_view(request):
-        next = request.GET.get('next')
+        # next = request.GET.get('next')
         form = UserRegisterForm(request.POST or None)
         if form.is_valid():
             user = form.save(commit=False)
@@ -70,15 +52,19 @@ class RegisterView(generic.ListView):
             user.save()
             new_user = authenticate(username=user.username, password=password)
             login(request, new_user)
-            if next:
-                return redirect(next)
-            return redirect('/')
+            # if next:
+            #     return redirect(next)
+            return redirect('')
 
-        context = {
-            'form': form,
-        }
-        return render(request, 'posts/signup.html',context)
+        form.clean()
+        return super().form_valid(form)
 
+class LogoutView(generic.ListView):
+    template_name = 'posts/index.html'
+
+    def logout_view(request):
+        logout(request)
+        return redirect('')
 
     def get_queryset(self):
         return True

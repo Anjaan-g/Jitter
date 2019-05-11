@@ -6,7 +6,6 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>{% block title %}
-    Jitter
     {% endblock title %}
   </title>
 
@@ -16,70 +15,17 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="{% static 'posts/css/material-kit.css' %}" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <!-- <link href="../assets/demo/demo.css" rel="stylesheet" /> -->
+
 </head>
 
-<body class="landing-page sidebar-collapse">
-  <nav class="navbar  fixed-top navbar-expand-md bg-primary" color-on-scroll="100" id="sectionsNav">
-    <div class="container">
-      <div class="navbar-translate">
-        <a class="navbar-brand" href="{% url 'posts:index' %}" ><i class="fa fa-home"> </i> Home </a>
-        <a class="navbar-brand" href="#"><i class="fa fa-bell"> </i> Notifications</a>
-        <a class="navbar-brand" href="#"><i class="material-icons"> message</i> Messages</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse" style="max-height: 15px">
-        <ul class="navbar-nav ml-auto">
-            <form class="form-inline ml-auto">
-              <div class="form-group has-white bmd-form-group">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
-                <i class="material-icons">search
-                </i>
-              </button>
-            </form>
-          {% if request.user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link"href="#profile"> Profile
-                <!-- <img src="{% static 'posts/img/faces/christian.jpg' %}" alt="Thumbnail Image" class="img-raised  rounded-circle img-fluid"> -->
-              </a>
-              <li class="nav-item">
-                <a class="nav-link" href="#feed">Feed</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#signout">Sign out</a>
-              </li>
-          {% endif %}
-        </ul>
-      </div>
-    </div>
-  </nav>
+<body >
+  {% include "posts/navbar.html" %}
 
   <!-- <div class="container"> -->
     {% block content %}
 
     {% endblock content %}
   <!-- </div> -->
-    <!--   Core JS Files   -->
-    <script src="{% static 'posts/js/core/jquery.min.js' %}" type="text/javascript"></script>
-    <script src="{% static 'posts/js/core/popper.min.js' %}" type="text/javascript"></script>
-    <script src="{% static 'posts/js/core/bootstrap-material-design.min.js' %}" type="text/javascript"></script>
-    <script src="{% static 'posts/js/plugins/moment.min.js' %}"></script>
-    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-    <script src="{% static 'posts/js/plugins/bootstrap-datetimepicker.js' %}" type="text/javascript"></script>
-    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="{% static 'posts/js/plugins/nouislider.min.js' %}" type="text/javascript"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-    <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-    <script src="{% static 'posts/js/material-kit.js' %}" type="text/javascript"></script>
-
+  {% include "posts/js.html" %}
   </body>
 </html>

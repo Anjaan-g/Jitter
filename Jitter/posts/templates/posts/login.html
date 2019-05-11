@@ -1,4 +1,4 @@
-{% extends '../posts/base.html' %}
+
 {% load static %}
 
 {% block title %} Login {% endblock title %}
@@ -17,7 +17,7 @@
     {% endif %}
 {% endif %}
 
-<!-- <form method="post" action="{% static 'posts/login.html' %}">
+<!-- <form method="post" action="{% url 'posts:login' %}">
 {% csrf_token %}
 <table>
 <tr>
@@ -35,13 +35,13 @@
 </form> -->
 
 
-<!-- <form method="post">
+<form method="post">
   {% csrf_token %}
-  {{ form }}
-  <input type="submit" name="" value="">
-</form> -->
+  {{ form.as_p }}
+  <input type="submit" name="" value="submit">
+</form>
 
-<form class="form" method="post" action="{% url 'posts:login' %}">
+<!-- <form class="form" method="post" action="{% url 'posts:login' %}">
     {% csrf_token %}
     <div class="page-header header-filter" style="background-image: url({% static 'posts/img/bg7.jpg' %}); background-position: top center;">
       <div class="container">
@@ -91,12 +91,12 @@
                   </div>
                 </div>
                 <div class="footer text-center">
-                  <a class="btn btn-primary btn-link btn-wd btn-lg">Login</a>
+                  <a href="{% url 'posts:index' %}" class="btn btn-primary btn-link btn-wd btn-lg">Login</a>
                 </div>
             </div>
           </div>
         </div>
       </div>
-  </form>
+  </form> -->
 
 {% endblock %}
