@@ -41,20 +41,21 @@ class LoginView(FormView):
 class RegisterView(FormView):
     template_name = 'posts/signup.html'
     form_class = UserRegisterForm
-    success_url = 'posts/index.html'
+    success_url = '../index.html'
     def register_view(request):
         # next = request.GET.get('next')
         form = UserRegisterForm(request.POST or None)
         if form.is_valid():
             user = form.save(commit=False)
             password = form.cleaned_data('password')
+            password2 = form.cleaned_data('password2')
             user.set_password(password)
             user.save()
             new_user = authenticate(username=user.username, password=password)
             login(request, new_user)
             # if next:
             #     return redirect(next)
-            return redirect('')
+            return redirect(success_url)
 
         form.clean()
         return super().form_valid(form)

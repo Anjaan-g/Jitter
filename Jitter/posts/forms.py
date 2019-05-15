@@ -45,6 +45,6 @@ class UserRegisterForm(forms.ModelForm):
         if password != password2:
             raise forms.ValidationError("Passwords do not match")
         email_qs = User.objects.filter(email=email)
-        if email_qs.exist():
+        if email_qs.exists():
             raise forms.ValidationError("This email address is already taken")
         return email

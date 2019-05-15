@@ -1,9 +1,12 @@
-
+{% extends '../posts/base.html' %}
 {% load static %}
 
 {% block title %} Login {% endblock title %}
 
 {% block content %}
+<div class="section mt-auto">
+  {% include "posts/navbar.html" %}
+</div>
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
@@ -34,12 +37,35 @@
 <input type="hidden" name="next" value="{{ next }}" />
 </form> -->
 
+<div class="container section-login">
+  <div class="row">
+    <div class="card card-login mx-auto col-lg-4 col-md-8 ml-auto mr-auto" >
+      <div class="card-header card-header-primary text-center">
 
-<form method="post">
-  {% csrf_token %}
+      <h3 class="card-title mx-auto ">Login</h3>
+      <div class="row  mx-auto">
+        <div class="col-12 card-body col-md-10 mt-3 mx-auto">
+          <form method="post">
+            <div class="input-group input-group-prepend ">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input class="btn btn-primary" type="submit" value="submit">
+            </div>
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <form method="post">
+  #{% csrf_token %}
   {{ form.as_p }}
   <input type="submit" name="" value="submit">
-</form>
+</form> -->
 
 <!-- <form class="form" method="post" action="{% url 'posts:login' %}">
     {% csrf_token %}
