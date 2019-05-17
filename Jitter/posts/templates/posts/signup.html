@@ -7,7 +7,7 @@
 <div class="section mt-auto">
   {% include "posts/navbar.html" %}
 </div>
-<div class="container section-login">
+<div class="container-fluid section-login">
   <div class="row">
     <div class="card bg-primary card-login mx-auto col-lg-4 col-md-8 ml-auto mr-auto" >
       <div class="card-body card-header-primary text-center">
@@ -22,9 +22,10 @@
 
             {{ form.as_p }}
 
-            <input class="btn btn-primary" type="submit" value="submit">
+            <button type="button" class="btn btn-info">Submit</button>
             </div>
           </form>
+          <strong>Already have an account? <a href="/posts/login" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Login</a></strong>
         </div>
         </div>
       </div>
