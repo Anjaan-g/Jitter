@@ -5,18 +5,18 @@
 <div class="section mt-auto">
   {% include "../posts/navbar.html" %}
 </div>
-{% include "../posts/navbar.html" %}
-<div class="container  section-login">
+<div class="container-fluid  section-login">
   <div class="row">
-    <div class="card card-login mx-auto col-lg-4 col-md-8 ml-auto mr-auto" >
-      <div class="card-header card-header-primary text-center">
-        <h3 class="card-title mx-auto ">Login</h3>
+    <div class="card card-login mx-auto col-lg-4  " >
+      <div class="card-header-primary ">
+        <h3 class="card-title mx-auto text-center">Login</h3>
         <div class="row  mx-auto">
           <div class="col-12 card-body col-md-10 mt-3 mx-auto">
             <form method="post">
               {% csrf_token %}
               {{ form.as_p }}
-              <button type="submit">Login</button>
+              <button class="btn btn-primary" type="submit">Login</button> <br>or
+              <a style="color:DodgerBlue;" href="../signup/">signup</a>
             </form>
           </div>
         </div>

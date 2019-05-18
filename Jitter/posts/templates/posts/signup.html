@@ -16,16 +16,16 @@
       <div class="row  mx-auto">
         <div class="col-12 card-body col-md-10 mt-3 mx-auto">
           <form method="post">
-            <div class="input-group input-group-prepend ">
+            <div class="">
 
             {% csrf_token %}
 
             {{ form.as_p }}
 
-            <button type="button" class="btn btn-info">Submit</button>
+            <button type="button" class="btn btn-primary">Submit</button>
             </div>
           </form>
-          <strong>Already have an account? <a href="/posts/login" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Login</a></strong>
+          <strong>Already have an account? <a style="color:DodgerBlue;" href="/posts/login"  role="button" aria-pressed="true">Login</a></strong>
         </div>
         </div>
       </div>
